@@ -199,20 +199,12 @@ class float16_t {
 
 __attribute__((always_inline, target("avx512f,avx512vl,avx512bw,avx512fp16")))
 static inline __m512h f16_maskz_loadu_vec(__mmask32 k, const void *addr) {
-#if (__GNUC__ < 14)
   return (__m512h)_mm512_maskz_loadu_epi16(k, addr);
-#else
-  return _mm512_maskz_loadu_ph(k, addr);
-#endif
 }
 
 __attribute__((always_inline, target("avx512f,avx512vl,avx512bw,avx512fp16")))
 static inline void f16_mask_storeu_vec(void *addr, __mmask32 k, __m512h val) {
-#if (__GNUC__ < 14)
   _mm512_mask_storeu_epi16(addr, k, (__m512i)val);
-#else
-  _mm512_mask_storeu_ph(addr, k, val);
-#endif
 }
 #endif  // __GNUC__ >= 12
 
