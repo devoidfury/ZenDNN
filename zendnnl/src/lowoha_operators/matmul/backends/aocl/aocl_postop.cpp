@@ -699,7 +699,7 @@ void cleanup_dlp_post_op(dlp_metadata_t *aocl_po) {
     // Count operations from seq_vector for proper cleanup
     // This is more accurate than counting from lowoha_param.postop_ because
     // it includes zp_comp matrix_add entries added internally
-    int eltwise_count = 0;
+    [[maybe_unused]] int eltwise_count = 0;
     int matrix_add_count = 0;
     int matrix_mul_count = 0;
 
